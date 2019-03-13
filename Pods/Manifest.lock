@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (4.8.1)
+  - AppCenter (1.13.1):
+    - AppCenter/Analytics (= 1.13.1)
+    - AppCenter/Crashes (= 1.13.1)
+  - AppCenter/Analytics (1.13.1):
+    - AppCenter/Core
+  - AppCenter/Core (1.13.1)
+  - AppCenter/Crashes (1.13.1):
+    - AppCenter/Core
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.1)
+  - AppCenter
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AppCenter
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AppCenter: c41422e3d69220d17a622e48edebb8c1e0d06ec9
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 151694f3fe60956cd3fd6a8cb2dac42d8f4217f2
+
+COCOAPODS: 1.5.3
