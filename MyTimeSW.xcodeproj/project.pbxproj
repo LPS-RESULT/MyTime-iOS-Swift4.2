@@ -10,11 +10,14 @@
 		088371293A723B7BDD7AA3D7 /* Pods_MyTimeSW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79F9AA7570062A7E9E2035C6 /* Pods_MyTimeSW.framework */; };
 		20BA36DD226E3B0478E39D93 /* Pods_MyTimeSWTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0E1C59F30485575F55ACE31 /* Pods_MyTimeSWTests.framework */; };
 		EA0F40072238F6D80095F368 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F40062238F6D80095F368 /* AppDelegate.swift */; };
-		EA0F40092238F6D80095F368 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F40082238F6D80095F368 /* ViewController.swift */; };
+		EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F40082238F6D80095F368 /* MainNavigationViewController.swift */; };
 		EA0F400C2238F6D80095F368 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0F400A2238F6D80095F368 /* Main.storyboard */; };
 		EA0F400E2238F6DB0095F368 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0F400D2238F6DB0095F368 /* Assets.xcassets */; };
 		EA0F40112238F6DB0095F368 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0F400F2238F6DB0095F368 /* LaunchScreen.storyboard */; };
 		EA0F401C2238F6DB0095F368 /* MyTimeSWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F401B2238F6DB0095F368 /* MyTimeSWTests.swift */; };
+		EA0F40292238FA5B0095F368 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F40282238FA5B0095F368 /* SignInViewController.swift */; };
+		EA0F402C223900130095F368 /* LPSColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F402B223900130095F368 /* LPSColors.swift */; };
+		EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F402E223901D50095F368 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +38,7 @@
 		E0E1C59F30485575F55ACE31 /* Pods_MyTimeSWTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTimeSWTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0F40032238F6D80095F368 /* MyTimeSW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTimeSW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0F40062238F6D80095F368 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA0F40082238F6D80095F368 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA0F40082238F6D80095F368 /* MainNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationViewController.swift; sourceTree = "<group>"; };
 		EA0F400B2238F6D80095F368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA0F400D2238F6DB0095F368 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA0F40102238F6DB0095F368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +46,9 @@
 		EA0F40172238F6DB0095F368 /* MyTimeSWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTimeSWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0F401B2238F6DB0095F368 /* MyTimeSWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTimeSWTests.swift; sourceTree = "<group>"; };
 		EA0F401D2238F6DB0095F368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA0F40282238FA5B0095F368 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		EA0F402B223900130095F368 /* LPSColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPSColors.swift; sourceTree = "<group>"; };
+		EA0F402E223901D50095F368 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,8 +95,9 @@
 		EA0F40052238F6D80095F368 /* MyTimeSW */ = {
 			isa = PBXGroup;
 			children = (
+				EA0F402A223900040095F368 /* Utilities */,
+				EA0F40262238F99F0095F368 /* Containers */,
 				EA0F40062238F6D80095F368 /* AppDelegate.swift */,
-				EA0F40082238F6D80095F368 /* ViewController.swift */,
 				EA0F400A2238F6D80095F368 /* Main.storyboard */,
 				EA0F400D2238F6DB0095F368 /* Assets.xcassets */,
 				EA0F400F2238F6DB0095F368 /* LaunchScreen.storyboard */,
@@ -106,6 +113,40 @@
 				EA0F401D2238F6DB0095F368 /* Info.plist */,
 			);
 			path = MyTimeSWTests;
+			sourceTree = "<group>";
+		};
+		EA0F40262238F99F0095F368 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F402D223901BE0095F368 /* Home */,
+				EA0F40082238F6D80095F368 /* MainNavigationViewController.swift */,
+				EA0F40272238F9B20095F368 /* Sign In */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		EA0F40272238F9B20095F368 /* Sign In */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F40282238FA5B0095F368 /* SignInViewController.swift */,
+			);
+			path = "Sign In";
+			sourceTree = "<group>";
+		};
+		EA0F402A223900040095F368 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F402B223900130095F368 /* LPSColors.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EA0F402D223901BE0095F368 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EA0F402E223901D50095F368 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		F0C2A648865DAEA6B314D7D3 /* Frameworks */ = {
@@ -303,8 +344,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA0F40092238F6D80095F368 /* ViewController.swift in Sources */,
+				EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */,
+				EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */,
+				EA0F402C223900130095F368 /* LPSColors.swift in Sources */,
 				EA0F40072238F6D80095F368 /* AppDelegate.swift in Sources */,
+				EA0F40292238FA5B0095F368 /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UE34H3A44R;
 				INFOPLIST_FILE = MyTimeSW/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,7 +522,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lps.MyTimeSW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -489,6 +534,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UE34H3A44R;
 				INFOPLIST_FILE = MyTimeSW/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lps.MyTimeSW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
