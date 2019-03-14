@@ -26,11 +26,16 @@ class SignInViewController: UIViewController {
         
         // Top Logo
         let topLogo = UIImageView(image: UIImage(named: "lps_logo"))
-        topLogo.frame = CGRect(x: 0, y: 0, width: 180, height: 48)
-        
+        topLogo.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topLogo)
         
-        NSLayoutConstraint.activate([topLogo.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1.0)])
+        // Setup constraints
+        topLogo.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        topLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        topLogo.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 100).isActive = true
+        topLogo.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -100).isActive = true
+        topLogo.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        topLogo.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     
