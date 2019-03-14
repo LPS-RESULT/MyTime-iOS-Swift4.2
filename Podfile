@@ -9,6 +9,8 @@ target 'MyTimeSW' do
   pod 'AppCenter'
   pod 'Alamofire', '~> 4.8.1'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'MaterialDesignSymbol'
+  pod 'UIFontComplete'
 
   target 'MyTimeSWTests' do
     inherit! :search_paths
