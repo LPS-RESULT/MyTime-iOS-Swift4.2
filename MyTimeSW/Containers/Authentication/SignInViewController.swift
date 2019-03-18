@@ -11,7 +11,11 @@ import UIKit
 import MaterialDesignSymbol
 import SharkORM
 
-class SignInViewController: UIViewController {
+protocol SignInStatusDelegate {
+    func updatedSignIn(success: Bool)
+}
+
+class SignInViewController: UIViewController, SignInStatusDelegate {
     
     private var usernameInput: UITextField! = nil
     private var passwordInput: UITextField! = nil
@@ -19,12 +23,16 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var fetched = UserProfile.query().fetch()
-        print(fetched)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupViews()
+    }
+    
+    func updatedSignIn(success: Bool) {
+        if success {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     @objc func signInButtonClicked(sender: UIButton) {
@@ -33,6 +41,7 @@ class SignInViewController: UIViewController {
         processLoginViewController.username = usernameInput.text ?? ""
         processLoginViewController.password = passwordInput.text ?? ""
         processLoginViewController.securityCode = securityCodeInput.text ?? ""
+        processLoginViewController.delegate = self
         self.present(processLoginViewController, animated: true, completion: nil)
     }
     

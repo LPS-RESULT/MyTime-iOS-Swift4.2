@@ -12,6 +12,8 @@ import Alamofire
 
 class ProcessSignInViewController: UIViewController {
     
+    public var delegate: SignInStatusDelegate?
+    
     public var username: String = "";
     public var password: String = "";
     public var securityCode: String = "";
@@ -40,9 +42,21 @@ class ProcessSignInViewController: UIViewController {
     func getUserDetailsFrom(username: String) {
         statusLabel.text = "Getting user details from\n\(username)"
         MTApi.getUserDetails(fromUsername: username) { (success: Bool, profile: UserProfile?) in
+            guard success else { self.delegate?.updatedSignIn(success: false); return }
             UserProfile.query().fetch().remove()
-            profile?.commit();
-//            startWelcomeAndTransition()
+            if let user = profile {
+                user.commit();
+                let name = "\(user.firstName ?? "") \(user.lastName ?? "")"
+                self.startWelcomeAndTransition(name: name)
+            }
+        }
+    }
+    
+    func startWelcomeAndTransition(name: String) {
+        statusLabel.text = "Welcome \n\(name)!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.dismiss(animated: true, completion: nil)
+            self.delegate?.updatedSignIn(success: true)
         }
     }
     

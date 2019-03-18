@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import SharkORM
 
 class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
-        self.present(SignInViewController(), animated: false, completion: nil)
+        if MTDefaults.userDetails == nil {
+            self.present(SignInViewController(), animated: false, completion: nil)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
 }

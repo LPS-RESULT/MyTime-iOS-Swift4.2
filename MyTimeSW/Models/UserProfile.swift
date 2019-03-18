@@ -125,11 +125,7 @@ class UserProfile: SRKObject {
         case userType = "UserType"
     }
     
-    override init() {
-        super.init()
-    }
-    
-    init(json: JSON) {
+    func loadFrom(json: JSON) -> UserProfile {
         self.firstName = json[CodingKeys.firstName.stringValue].string
         self.lastName = json[CodingKeys.lastName.stringValue].string
         self.aboutMe = json[CodingKeys.aboutMe.stringValue].string
@@ -209,89 +205,6 @@ class UserProfile: SRKObject {
         self.username = json[CodingKeys.username.stringValue].string
         self.userRoleID = json[CodingKeys.userRoleID.stringValue].string
         self.userType = json[CodingKeys.userType.stringValue].string
-        super.init()
-    }
-    
-    init(aboutMe: String, accountID: String, address: String, alias: String, badgeText: String, bannerPhotoURL: String, callCenterID: String, city: String, communityNickname: String, companyName: String, contactID: String, contactIDC: String, contactRecordC: String, country: String, createdByID: String, createdDate: String, delegatedApproverID: String, department: String, digestFrequency: String, division: String, email: String, emailEncodingKey: String, emailPreferencesAutoBcc: Bool, emailPreferencesAutoBccStayInTouch: Bool, emailPreferencesStayInTouchReminder: Bool, employeeNumber: String, userProfileExtension: String, fax: String, federationIdentifier: String, firstName: String, forecastEnabled: Bool, fullPhotoURL: String, geocodeAccuracy: String, userId: String, isActive: Bool, isEXTIndicatorVisible: Bool, isPortalEnabled: Bool, isProfilePhotoActive: Bool, languageLocaleKey: String, lastLoginDate: String, lastModifiedByID: String, lastModifiedDate: String, lastName: String, lastReferencedDate: String, lastViewedDate: String, latitude: String, localeSidKey: String, longitude: String, managerID: String, mediumBannerPhotoURL: String, mediumPhotoURL: String, middleName: String, mobilePhone: String, name: String, offlinePDATrialExpirationDate: String, offlineTrialExpirationDate: String, outOfOfficeMessage: String, phone: String, portalRole: String, postalCode: String, receivesAdminInfoEmails: Bool, receivesInfoEmails: Bool, senderEmail: String, senderName: String, signature: String, smallBannerPhotoURL: String, smallPhotoURL: String, state: String, stayInTouchNote: String, stayInTouchSignature: String, stayInTouchSubject: String, street: String, suffix: String, systemModstamp: String, timeZoneSidKey: String, title: String, username: String, userRoleID: String, userType: String) {
-        self.aboutMe = aboutMe
-        self.accountID = accountID
-        self.address = address
-        self.alias = alias
-        self.badgeText = badgeText
-        self.bannerPhotoURL = bannerPhotoURL
-        self.callCenterID = callCenterID
-        self.city = city
-        self.communityNickname = communityNickname
-        self.companyName = companyName
-        self.contactID = contactID
-        self.contactIDC = contactIDC
-        self.contactRecordC = contactRecordC
-        self.country = country
-        self.createdByID = createdByID
-        self.createdDate = createdDate
-        self.delegatedApproverID = delegatedApproverID
-        self.department = department
-        self.digestFrequency = digestFrequency
-        self.division = division
-        self.email = email
-        self.emailEncodingKey = emailEncodingKey
-        self.emailPreferencesAutoBcc = emailPreferencesAutoBcc
-        self.emailPreferencesAutoBccStayInTouch = emailPreferencesAutoBccStayInTouch
-        self.emailPreferencesStayInTouchReminder = emailPreferencesStayInTouchReminder
-        self.employeeNumber = employeeNumber
-        self.userProfileExtension = userProfileExtension
-        self.fax = fax
-        self.federationIdentifier = federationIdentifier
-        self.firstName = firstName
-        self.forecastEnabled = forecastEnabled
-        self.fullPhotoURL = fullPhotoURL
-        self.geocodeAccuracy = geocodeAccuracy
-        self.userId = userId
-        self.isActive = isActive
-        self.isEXTIndicatorVisible = isEXTIndicatorVisible
-        self.isPortalEnabled = isPortalEnabled
-        self.isProfilePhotoActive = isProfilePhotoActive
-        self.languageLocaleKey = languageLocaleKey
-        self.lastLoginDate = lastLoginDate
-        self.lastModifiedByID = lastModifiedByID
-        self.lastModifiedDate = lastModifiedDate
-        self.lastName = lastName
-        self.lastReferencedDate = lastReferencedDate
-        self.lastViewedDate = lastViewedDate
-        self.latitude = latitude
-        self.localeSidKey = localeSidKey
-        self.longitude = longitude
-        self.managerID = managerID
-        self.mediumBannerPhotoURL = mediumBannerPhotoURL
-        self.mediumPhotoURL = mediumPhotoURL
-        self.middleName = middleName
-        self.mobilePhone = mobilePhone
-        self.name = name
-        self.offlinePDATrialExpirationDate = offlinePDATrialExpirationDate
-        self.offlineTrialExpirationDate = offlineTrialExpirationDate
-        self.outOfOfficeMessage = outOfOfficeMessage
-        self.phone = phone
-        self.portalRole = portalRole
-        self.postalCode = postalCode
-        self.receivesAdminInfoEmails = receivesAdminInfoEmails
-        self.receivesInfoEmails = receivesInfoEmails
-        self.senderEmail = senderEmail
-        self.senderName = senderName
-        self.signature = signature
-        self.smallBannerPhotoURL = smallBannerPhotoURL
-        self.smallPhotoURL = smallPhotoURL
-        self.state = state
-        self.stayInTouchNote = stayInTouchNote
-        self.stayInTouchSignature = stayInTouchSignature
-        self.stayInTouchSubject = stayInTouchSubject
-        self.street = street
-        self.suffix = suffix
-        self.systemModstamp = systemModstamp
-        self.timeZoneSidKey = timeZoneSidKey
-        self.title = title
-        self.username = username
-        self.userRoleID = userRoleID
-        self.userType = userType
-        super.init()
+        return self
     }
 }

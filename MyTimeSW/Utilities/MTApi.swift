@@ -36,13 +36,12 @@ class MTApi {
         let headers = ["Authorization": "Bearer \(userDetails.accessToken)"]
         print(loginUrl)
         request(loginUrl, method: .get, headers: headers).responseJSON { (response) in
-            print(response)
             guard let data = response.data else { return }
             do {
                 if (response.response?.statusCode == 200) {
                     let responseJson = try JSON(data: data)
                     if let profileRecord = responseJson["records"].array?.first {
-                        let profile = UserProfile(json: profileRecord)
+                        let profile = UserProfile().loadFrom(json: profileRecord)
                         result(true, profile)
                     }
                 } else {
