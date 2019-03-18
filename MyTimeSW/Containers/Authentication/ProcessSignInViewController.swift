@@ -39,8 +39,10 @@ class ProcessSignInViewController: UIViewController {
     
     func getUserDetailsFrom(username: String) {
         statusLabel.text = "Getting user details from\n\(username)"
-        MTApi.getUserDetails(fromUsername: username) { (success, details) in
-            
+        MTApi.getUserDetails(fromUsername: username) { (success: Bool, profile: UserProfile?) in
+            UserProfile.query().fetch().remove()
+            profile?.commit();
+//            startWelcomeAndTransition()
         }
     }
     
