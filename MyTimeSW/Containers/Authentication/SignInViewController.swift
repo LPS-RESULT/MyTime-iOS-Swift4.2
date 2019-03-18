@@ -9,11 +9,18 @@
 import Foundation
 import UIKit
 import MaterialDesignSymbol
+import SharkORM
 
 class SignInViewController: UIViewController {
     
+    private var usernameInput: UITextField! = nil
+    private var passwordInput: UITextField! = nil
+    private var securityCodeInput: UITextField! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        var fetched = UserProfile.query().fetch()
+        print(fetched)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,7 +28,12 @@ class SignInViewController: UIViewController {
     }
     
     @objc func signInButtonClicked(sender: UIButton) {
-        
+        let processLoginViewController = ProcessSignInViewController()
+        processLoginViewController.modalTransitionStyle = .crossDissolve
+        processLoginViewController.username = usernameInput.text ?? ""
+        processLoginViewController.password = passwordInput.text ?? ""
+        processLoginViewController.securityCode = securityCodeInput.text ?? ""
+        self.present(processLoginViewController, animated: true, completion: nil)
     }
     
     func setupViews() {
@@ -75,11 +87,12 @@ class SignInViewController: UIViewController {
         usernameIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
         usernameIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
-        let usernameInput = UITextField()
+        usernameInput = UITextField()
         usernameInput.translatesAutoresizingMaskIntoConstraints = false
         usernameInput.attributedPlaceholder = NSAttributedString(string: "Username",
                                                                  attributes: [NSAttributedString.Key.foregroundColor: LPSColors.white34])
         usernameInput.font = LPSFonts.quicksandMedium.of(size: 16.0)
+        usernameInput.text = "timothy.santiago@lps.co.nz"
         usernameInput.autocapitalizationType = .none
         usernameInput.spellCheckingType = .no
         usernameInput.keyboardType = .emailAddress
@@ -110,7 +123,8 @@ class SignInViewController: UIViewController {
         passwordIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
         passwordIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
-        let passwordInput = UITextField()
+        passwordInput = UITextField()
+        passwordInput.text = "Frostie28"
         passwordInput.translatesAutoresizingMaskIntoConstraints = false
         passwordInput.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                  attributes: [NSAttributedString.Key.foregroundColor: LPSColors.white34])
@@ -144,7 +158,8 @@ class SignInViewController: UIViewController {
         securityCodeIcon.heightAnchor.constraint(equalToConstant: 20).isActive = true
         securityCodeIcon.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
-        let securityCodeInput = UITextField()
+        securityCodeInput = UITextField()
+        securityCodeInput.text = "3O06DiTatWXXQ9HPOjldYdQGC"
         securityCodeInput.translatesAutoresizingMaskIntoConstraints = false
         securityCodeInput.attributedPlaceholder = NSAttributedString(string: "Security Code",
                                                                  attributes: [NSAttributedString.Key.foregroundColor: LPSColors.white34])

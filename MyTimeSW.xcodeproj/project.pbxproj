@@ -21,6 +21,10 @@
 		EA0F40372239F7FD0095F368 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA0F40342239F7FC0095F368 /* Quicksand-Medium.ttf */; };
 		EA0F40382239F7FD0095F368 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA0F40352239F7FD0095F368 /* Raleway-Regular.ttf */; };
 		EA0F40392239F7FD0095F368 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA0F40362239F7FD0095F368 /* Quicksand-Regular.ttf */; };
+		EA0F403B223F1E680095F368 /* MTDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403A223F1E680095F368 /* MTDefaults.swift */; };
+		EA0F403D223F20970095F368 /* ProcessSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403C223F20970095F368 /* ProcessSignInViewController.swift */; };
+		EA0F403F223F2D200095F368 /* MTApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403E223F2D200095F368 /* MTApi.swift */; };
+		EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		EA0F40342239F7FC0095F368 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		EA0F40352239F7FD0095F368 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		EA0F40362239F7FD0095F368 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		EA0F403A223F1E680095F368 /* MTDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTDefaults.swift; sourceTree = "<group>"; };
+		EA0F403C223F20970095F368 /* ProcessSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessSignInViewController.swift; sourceTree = "<group>"; };
+		EA0F403E223F2D200095F368 /* MTApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTApi.swift; sourceTree = "<group>"; };
+		EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				EA0F40262238F99F0095F368 /* Containers */,
+				EAAADBED223F9A9900E5CA3A /* Models */,
 				EA0F402A223900040095F368 /* Utilities */,
 				EA0F40322239F7670095F368 /* Assets */,
 				EA0F40062238F6D80095F368 /* AppDelegate.swift */,
@@ -124,18 +133,19 @@
 			isa = PBXGroup;
 			children = (
 				EA0F402D223901BE0095F368 /* Home */,
+				EA0F40272238F9B20095F368 /* Authentication */,
 				EA0F40082238F6D80095F368 /* MainNavigationViewController.swift */,
-				EA0F40272238F9B20095F368 /* Sign In */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
 		};
-		EA0F40272238F9B20095F368 /* Sign In */ = {
+		EA0F40272238F9B20095F368 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				EA0F40282238FA5B0095F368 /* SignInViewController.swift */,
+				EA0F403C223F20970095F368 /* ProcessSignInViewController.swift */,
 			);
-			path = "Sign In";
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		EA0F402A223900040095F368 /* Utilities */ = {
@@ -143,6 +153,8 @@
 			children = (
 				EA0F402B223900130095F368 /* LPSColors.swift */,
 				EA0F40302239F71B0095F368 /* LPSFonts.swift */,
+				EA0F403A223F1E680095F368 /* MTDefaults.swift */,
+				EA0F403E223F2D200095F368 /* MTApi.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -172,6 +184,14 @@
 				EA0F40352239F7FD0095F368 /* Raleway-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		EAAADBED223F9A9900E5CA3A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F0C2A648865DAEA6B314D7D3 /* Frameworks */ = {
@@ -307,6 +327,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialDesignSymbol/MaterialDesignSymbol.framework",
+				"${BUILT_PRODUCTS_DIR}/SharkORM/SharkORM.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UIFontComplete/UIFontComplete.framework",
 			);
@@ -316,6 +337,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialDesignSymbol.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SharkORM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIFontComplete.framework",
 			);
@@ -376,10 +398,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */,
+				EA0F403F223F2D200095F368 /* MTApi.swift in Sources */,
+				EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */,
+				EA0F403B223F1E680095F368 /* MTDefaults.swift in Sources */,
 				EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */,
 				EA0F40312239F71B0095F368 /* LPSFonts.swift in Sources */,
 				EA0F402C223900130095F368 /* LPSColors.swift in Sources */,
 				EA0F40072238F6D80095F368 /* AppDelegate.swift in Sources */,
+				EA0F403D223F20970095F368 /* ProcessSignInViewController.swift in Sources */,
 				EA0F40292238FA5B0095F368 /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,9 +10,10 @@ import UIKit
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import SharkORM
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SRKDelegate {
 
     var window: UIWindow?
 
@@ -23,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MSCrashes.self
         ])
         MSAppCenter.setLogLevel(.none);
+        
+        SharkORM.setDelegate(self)
+        SharkORM.openDatabaseNamed("MTDatabase")
         
         // setup main navigation controller
         
