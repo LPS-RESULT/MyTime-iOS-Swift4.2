@@ -16,6 +16,7 @@ class LPSColors {
     static let loginBackgroundGradientEnd = UIColor(red: 20/255, green: 30/255, blue: 48/255, alpha: 1)
     
     static let black = UIColor.black
+    static let black32 = UIColor(white: 0, alpha: 0.32)
     static let white = UIColor.white
     static let white34 = UIColor(white: 1, alpha: 0.34)
 }

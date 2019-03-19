@@ -12,6 +12,7 @@ target 'MyTimeSW' do
   pod 'MaterialDesignSymbol'
   pod 'UIFontComplete'
   pod 'SharkORM'
+  pod 'Kingfisher', '~> 4.10.1'
 
   target 'MyTimeSWTests' do
     inherit! :search_paths

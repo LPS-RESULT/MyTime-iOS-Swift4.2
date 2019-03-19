@@ -16,7 +16,7 @@ class MainNavigationViewController: UINavigationController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setViewControllers([HomeViewController()], animated: true)
+        self.setViewControllers([HomeViewController()], animated: false)
     }
 
 

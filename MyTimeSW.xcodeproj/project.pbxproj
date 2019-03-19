@@ -25,6 +25,7 @@
 		EA0F403D223F20970095F368 /* ProcessSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403C223F20970095F368 /* ProcessSignInViewController.swift */; };
 		EA0F403F223F2D200095F368 /* MTApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403E223F2D200095F368 /* MTApi.swift */; };
 		EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */; };
+		EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF022406D6100E5CA3A /* KFAddons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		EA0F403C223F20970095F368 /* ProcessSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessSignInViewController.swift; sourceTree = "<group>"; };
 		EA0F403E223F2D200095F368 /* MTApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTApi.swift; sourceTree = "<group>"; };
 		EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		EAAADBF022406D6100E5CA3A /* KFAddons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFAddons.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				EA0F40302239F71B0095F368 /* LPSFonts.swift */,
 				EA0F403A223F1E680095F368 /* MTDefaults.swift */,
 				EA0F403E223F2D200095F368 /* MTApi.swift */,
+				EAAADBF022406D6100E5CA3A /* KFAddons.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialDesignSymbol/MaterialDesignSymbol.framework",
 				"${BUILT_PRODUCTS_DIR}/SharkORM/SharkORM.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -336,6 +340,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialDesignSymbol.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SharkORM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -400,6 +405,7 @@
 				EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */,
 				EA0F403F223F2D200095F368 /* MTApi.swift in Sources */,
 				EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */,
+				EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */,
 				EA0F403B223F1E680095F368 /* MTDefaults.swift in Sources */,
 				EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */,
 				EA0F40312239F71B0095F368 /* LPSFonts.swift in Sources */,

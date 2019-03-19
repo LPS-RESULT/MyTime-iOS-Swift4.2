@@ -55,7 +55,7 @@ class ProcessSignInViewController: UIViewController {
     func startWelcomeAndTransition(name: String) {
         statusLabel.text = "Welcome \n\(name)!"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: false, completion: nil)
             self.delegate?.updatedSignIn(success: true)
         }
     }
