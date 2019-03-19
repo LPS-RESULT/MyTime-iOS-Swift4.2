@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
     private var fridayView: DayView!
     private var saturdayView: DayView!
     private var dayGroup: [DayView]!
+    private var projectTable: UITableView!
+    
+    private var timesheetLogs: [TimesheetLog] = [TimesheetLog]()
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -61,6 +64,10 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupViews()
+    }
+    
+    func setupViews() {
         self.view.backgroundColor = LPSColors.primary
         
         let topHeaderView = UIView()
@@ -237,6 +244,38 @@ class HomeViewController: UIViewController {
         saturdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
         dayGroup = [sundayView, mondayView, tuesdayView, wednesdayView, thursdayView, fridayView, saturdayView]
+        
+        projectTable = UITableView()
+        projectTable.translatesAutoresizingMaskIntoConstraints = false
+        projectTable.delegate = self
+        projectTable.dataSource = self
+        projectTable.backgroundColor = UIColor.clear
+        projectTable.separatorColor = UIColor.clear
+        self.view.addSubview(projectTable)
+        projectTable.topAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        projectTable.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        projectTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        projectTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
     }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return timesheetLogs.count
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.backgroundColor = UIColor.white
+//        cell.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//        cell.widthAnchor.constraint(equalTo: tableView.widthAnchor, constant: -40).isActive = true
+        return cell
+    }
+    
     
 }

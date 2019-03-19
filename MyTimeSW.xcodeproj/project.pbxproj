@@ -27,6 +27,7 @@
 		EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */; };
 		EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF022406D6100E5CA3A /* KFAddons.swift */; };
 		EAAADBF42240834400E5CA3A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF32240834400E5CA3A /* DayView.swift */; };
+		EAAADBF62240942F00E5CA3A /* TimesheetLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		EAAADBF022406D6100E5CA3A /* KFAddons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFAddons.swift; sourceTree = "<group>"; };
 		EAAADBF32240834400E5CA3A /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetLog.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */,
+				EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */,
 				EA0F40312239F71B0095F368 /* LPSFonts.swift in Sources */,
 				EA0F402C223900130095F368 /* LPSColors.swift in Sources */,
+				EAAADBF62240942F00E5CA3A /* TimesheetLog.swift in Sources */,
 				EA0F40072238F6D80095F368 /* AppDelegate.swift in Sources */,
 				EA0F403D223F20970095F368 /* ProcessSignInViewController.swift in Sources */,
 				EA0F40292238FA5B0095F368 /* SignInViewController.swift in Sources */,
