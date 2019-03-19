@@ -19,4 +19,6 @@ class LPSColors {
     static let black32 = UIColor(white: 0, alpha: 0.32)
     static let white = UIColor.white
     static let white34 = UIColor(white: 1, alpha: 0.34)
+    static let white40 = UIColor(white: 1, alpha: 0.40)
+    static let white56 = UIColor(white: 1, alpha: 0.56)
 }

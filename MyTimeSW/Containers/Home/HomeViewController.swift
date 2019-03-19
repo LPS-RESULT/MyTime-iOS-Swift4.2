@@ -19,6 +19,13 @@ class HomeViewController: UIViewController {
     private var greetingLabel: UILabel!
     private var monthButton: UIButton!
     private var profileImageView: UIImageView!
+    private var sundayView: DayView!
+    private var mondayView: DayView!
+    private var tuesdayView: DayView!
+    private var wednesdayView: DayView!
+    private var thursdayView: DayView!
+    private var fridayView: DayView!
+    private var saturdayView: DayView!
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -127,6 +134,93 @@ class HomeViewController: UIViewController {
         monthButton.centerYAnchor.constraint(equalTo: previousMonthButton.centerYAnchor).isActive = true
         monthButton.leadingAnchor.constraint(equalTo: previousMonthButton.trailingAnchor, constant: 20).isActive = true
         monthButton.trailingAnchor.constraint(equalTo: nextMonthButton.leadingAnchor, constant: -20).isActive = true
+        
+        let calendarBase = UIView()
+        calendarBase.translatesAutoresizingMaskIntoConstraints = false
+        calendarBase.layer.shadowColor = LPSColors.black.cgColor
+        calendarBase.layer.shadowRadius = 8
+        calendarBase.layer.shadowOpacity = 0.3
+        calendarBase.layer.shadowOffset = CGSize(width: 0, height: 0)
+        calendarBase.backgroundColor = LPSColors.primary
+        calendarBase.clipsToBounds = false
+        self.view.addSubview(calendarBase)
+        calendarBase.topAnchor.constraint(equalTo: topHeaderView.bottomAnchor).isActive = true
+        calendarBase.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        calendarBase.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        calendarBase.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        let calendarContainer = UIView()
+        calendarContainer.translatesAutoresizingMaskIntoConstraints = false
+        calendarContainer.backgroundColor = LPSColors.white56
+        calendarContainer.clipsToBounds = false
+        self.view.addSubview(calendarContainer)
+        calendarContainer.topAnchor.constraint(equalTo: topHeaderView.bottomAnchor).isActive = true
+        calendarContainer.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        calendarContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        calendarContainer.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        sundayView = DayView(withDayName: "SUN", dayNumber: "17")
+        sundayView.translatesAutoresizingMaskIntoConstraints = false
+        sundayView.selected = false
+        calendarContainer.addSubview(sundayView)
+        sundayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        sundayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        sundayView.leadingAnchor.constraint(equalTo: calendarContainer.leadingAnchor).isActive = true
+        sundayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        mondayView = DayView(withDayName: "MON", dayNumber: "18")
+        mondayView.translatesAutoresizingMaskIntoConstraints = false
+        mondayView.selected = false
+        calendarContainer.addSubview(mondayView)
+        mondayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        mondayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        mondayView.leadingAnchor.constraint(equalTo: sundayView.trailingAnchor).isActive = true
+        mondayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        tuesdayView = DayView(withDayName: "TUE", dayNumber: "19")
+        tuesdayView.translatesAutoresizingMaskIntoConstraints = false
+        tuesdayView.selected = true
+        calendarContainer.addSubview(tuesdayView)
+        tuesdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        tuesdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        tuesdayView.leadingAnchor.constraint(equalTo: mondayView.trailingAnchor).isActive = true
+        tuesdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        wednesdayView = DayView(withDayName: "WED", dayNumber: "20")
+        wednesdayView.translatesAutoresizingMaskIntoConstraints = false
+        wednesdayView.selected = false
+        calendarContainer.addSubview(wednesdayView)
+        wednesdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        wednesdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        wednesdayView.leadingAnchor.constraint(equalTo: tuesdayView.trailingAnchor).isActive = true
+        wednesdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        thursdayView = DayView(withDayName: "THU", dayNumber: "21")
+        thursdayView.translatesAutoresizingMaskIntoConstraints = false
+        thursdayView.selected = false
+        calendarContainer.addSubview(thursdayView)
+        thursdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        thursdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        thursdayView.leadingAnchor.constraint(equalTo: wednesdayView.trailingAnchor).isActive = true
+        thursdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        fridayView = DayView(withDayName: "FRI", dayNumber: "22")
+        fridayView.translatesAutoresizingMaskIntoConstraints = false
+        fridayView.selected = false
+        calendarContainer.addSubview(fridayView)
+        fridayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        fridayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        fridayView.leadingAnchor.constraint(equalTo: thursdayView.trailingAnchor).isActive = true
+        fridayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        saturdayView = DayView(withDayName: "SAT", dayNumber: "23")
+        saturdayView.translatesAutoresizingMaskIntoConstraints = false
+        saturdayView.selected = false
+        calendarContainer.addSubview(saturdayView)
+        saturdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        saturdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        saturdayView.leadingAnchor.constraint(equalTo: fridayView.trailingAnchor).isActive = true
+        saturdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
     }
     

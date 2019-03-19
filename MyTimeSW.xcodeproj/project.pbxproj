@@ -26,6 +26,7 @@
 		EA0F403F223F2D200095F368 /* MTApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0F403E223F2D200095F368 /* MTApi.swift */; };
 		EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */; };
 		EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF022406D6100E5CA3A /* KFAddons.swift */; };
+		EAAADBF42240834400E5CA3A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF32240834400E5CA3A /* DayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		EA0F403E223F2D200095F368 /* MTApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTApi.swift; sourceTree = "<group>"; };
 		EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		EAAADBF022406D6100E5CA3A /* KFAddons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFAddons.swift; sourceTree = "<group>"; };
+		EAAADBF32240834400E5CA3A /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				EA0F40262238F99F0095F368 /* Containers */,
+				EAAADBF22240833200E5CA3A /* Components */,
 				EAAADBED223F9A9900E5CA3A /* Models */,
 				EA0F402A223900040095F368 /* Utilities */,
 				EA0F40322239F7670095F368 /* Assets */,
@@ -195,6 +198,14 @@
 				EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EAAADBF22240833200E5CA3A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EAAADBF32240834400E5CA3A /* DayView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		F0C2A648865DAEA6B314D7D3 /* Frameworks */ = {
@@ -403,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */,
+				EAAADBF42240834400E5CA3A /* DayView.swift in Sources */,
 				EA0F403F223F2D200095F368 /* MTApi.swift in Sources */,
 				EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */,
 				EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */,
