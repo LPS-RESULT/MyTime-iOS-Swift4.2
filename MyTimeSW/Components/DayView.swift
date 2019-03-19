@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class DayView: UIView {
+class DayView: UIButton {
     
-    var selected: Bool {
+    var chosen: Bool {
         get {
             return self.alpha == 1.0
         } set {
@@ -59,7 +59,7 @@ class DayView: UIView {
         dayNameLabel.translatesAutoresizingMaskIntoConstraints = false
         dayNameLabel.textAlignment = .center
         dayNameLabel.font = LPSFonts.quicksandRegular.of(size: 12.0)
-        dayNameLabel.textColor = selected ? LPSColors.black : LPSColors.black
+        dayNameLabel.textColor = LPSColors.black
         self.addSubview(dayNameLabel)
         dayNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12).isActive = true
         dayNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

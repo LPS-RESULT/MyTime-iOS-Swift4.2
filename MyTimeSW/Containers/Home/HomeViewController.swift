@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     private var thursdayView: DayView!
     private var fridayView: DayView!
     private var saturdayView: DayView!
+    private var dayGroup: [DayView]!
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -50,6 +51,12 @@ class HomeViewController: UIViewController {
                     self.nameLabel.text = "\(profile.firstName ?? "") \(profile.lastName ?? "")"
                 }
             }
+        }
+    }
+    
+    @objc func dayChosen(sender: DayView) {
+        dayGroup.forEach { (dayView) in
+            dayView.chosen = dayView == sender
         }
     }
     
@@ -161,7 +168,8 @@ class HomeViewController: UIViewController {
         
         sundayView = DayView(withDayName: "SUN", dayNumber: "17")
         sundayView.translatesAutoresizingMaskIntoConstraints = false
-        sundayView.selected = false
+        sundayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        sundayView.chosen = false
         calendarContainer.addSubview(sundayView)
         sundayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         sundayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -170,7 +178,8 @@ class HomeViewController: UIViewController {
         
         mondayView = DayView(withDayName: "MON", dayNumber: "18")
         mondayView.translatesAutoresizingMaskIntoConstraints = false
-        mondayView.selected = false
+        mondayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        mondayView.chosen = false
         calendarContainer.addSubview(mondayView)
         mondayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         mondayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -179,7 +188,8 @@ class HomeViewController: UIViewController {
         
         tuesdayView = DayView(withDayName: "TUE", dayNumber: "19")
         tuesdayView.translatesAutoresizingMaskIntoConstraints = false
-        tuesdayView.selected = true
+        tuesdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        tuesdayView.chosen = true
         calendarContainer.addSubview(tuesdayView)
         tuesdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         tuesdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -188,7 +198,8 @@ class HomeViewController: UIViewController {
         
         wednesdayView = DayView(withDayName: "WED", dayNumber: "20")
         wednesdayView.translatesAutoresizingMaskIntoConstraints = false
-        wednesdayView.selected = false
+        wednesdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        wednesdayView.chosen = false
         calendarContainer.addSubview(wednesdayView)
         wednesdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         wednesdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -197,7 +208,8 @@ class HomeViewController: UIViewController {
         
         thursdayView = DayView(withDayName: "THU", dayNumber: "21")
         thursdayView.translatesAutoresizingMaskIntoConstraints = false
-        thursdayView.selected = false
+        thursdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        thursdayView.chosen = false
         calendarContainer.addSubview(thursdayView)
         thursdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         thursdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -206,7 +218,8 @@ class HomeViewController: UIViewController {
         
         fridayView = DayView(withDayName: "FRI", dayNumber: "22")
         fridayView.translatesAutoresizingMaskIntoConstraints = false
-        fridayView.selected = false
+        fridayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        fridayView.chosen = false
         calendarContainer.addSubview(fridayView)
         fridayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         fridayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -215,13 +228,15 @@ class HomeViewController: UIViewController {
         
         saturdayView = DayView(withDayName: "SAT", dayNumber: "23")
         saturdayView.translatesAutoresizingMaskIntoConstraints = false
-        saturdayView.selected = false
+        saturdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        saturdayView.chosen = false
         calendarContainer.addSubview(saturdayView)
         saturdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         saturdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
         saturdayView.leadingAnchor.constraint(equalTo: fridayView.trailingAnchor).isActive = true
         saturdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
+        dayGroup = [sundayView, mondayView, tuesdayView, wednesdayView, thursdayView, fridayView, saturdayView]
     }
     
 }
