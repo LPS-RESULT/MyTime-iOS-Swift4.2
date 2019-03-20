@@ -143,9 +143,9 @@ class HomeViewController: UIViewController {
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         greetingLabel.font = LPSFonts.quicksandRegular.of(size: 15.0)
         greetingLabel.textColor = LPSColors.white34
-        greetingLabel.text = "good morning"
+        greetingLabel.text = "myTime"
         topHeaderView.addSubview(greetingLabel)
-        greetingLabel.topAnchor.constraint(equalTo: topHeaderView.topAnchor, constant: 29).isActive = true
+        greetingLabel.topAnchor.constraint(equalTo: topHeaderView.topAnchor, constant: 40).isActive = true
         greetingLabel.leadingAnchor.constraint(equalTo: topHeaderView.leadingAnchor, constant: 20).isActive = true
         greetingLabel.trailingAnchor.constraint(equalTo: topHeaderView.trailingAnchor, constant: -20).isActive = true
         
@@ -321,19 +321,17 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let log = self.timesheetLogs.first {
-            let cell = TimesheetLogCell()
-            cell.hoursText = "\(log.thuC ?? 0)"
-            cell.titleText = "\(self.getPlacementFor(log: log)?.placementNameC ?? "--none--")"
-            cell.subtext = "\(log.clientCodeC ?? "--none--")\n\(log.descriptionC ?? "")"
-            if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == UIForceTouchCapability.available
-            {
-                registerForPreviewing(with: self, sourceView: cell)
-                
-            }
-            return cell
+        let log = self.timesheetLogs[indexPath.row]
+        let cell = TimesheetLogCell()
+        cell.hoursText = "\(log.thuC ?? 0)"
+        cell.titleText = "\(self.getPlacementFor(log: log)?.placementNameC ?? "--none--")"
+        cell.subtext = "\(log.clientCodeC ?? "--none--")\n\(log.descriptionC ?? "")"
+        if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == UIForceTouchCapability.available
+        {
+            registerForPreviewing(with: self, sourceView: cell)
+            
         }
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -346,8 +344,9 @@ extension HomeViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = self.projectTable.indexPathForRow(at: location) else { return nil }
         guard  let cell = self.projectTable.cellForRow(at: indexPath) else { return nil }
-        let popVC = SignInViewController()
-        //Set your Peek height
+        let log = self.timesheetLogs[indexPath.row]
+        let popVC = TimesheetLogViewController()
+        popVC.timesheetLog = log
         popVC.preferredContentSize = CGSize(width: 0.0, height: 300)
         previewingContext.sourceRect = cell.frame
         return popVC
