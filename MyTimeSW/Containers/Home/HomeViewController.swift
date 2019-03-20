@@ -30,6 +30,11 @@ class HomeViewController: UIViewController {
     private var projectTable: UITableView!
     
     private var timesheetLogs: [TimesheetLog] = [TimesheetLog]()
+    private var currentWeekEnd: Date!
+    
+    override func viewDidLoad() {
+        self.currentWeekEnd = Date().getWeekDates().thisWeek.last
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -53,8 +58,16 @@ class HomeViewController: UIViewController {
                     self.profileImageView.kf.setImage(with: profileImageUrl)
                     self.nameLabel.text = "\(profile.firstName ?? "") \(profile.lastName ?? "")"
                 }
+                MTApi.getTimesheet(forWeekEnd: self.currentWeekEnd, ownerId: profile.userId ?? "", result: { (success, timesheets) in
+                    if let logs = timesheets {
+                        self.timesheetLogs = logs
+                        self.projectTable.reloadData()
+                    }
+                })
             }
         }
+        
+        
     }
     
     @objc func dayChosen(sender: DayView) {
@@ -68,7 +81,7 @@ class HomeViewController: UIViewController {
     }
     
     func setupViews() {
-        self.view.backgroundColor = LPSColors.primary
+        self.view.backgroundColor = LPSColors.primaryDark
         
         let topHeaderView = UIView()
         topHeaderView.translatesAutoresizingMaskIntoConstraints = false
@@ -265,17 +278,22 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return timesheetLogs.count
-        return 1
+        return timesheetLogs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = UIColor.white
-//        cell.heightAnchor.constraint(equalToConstant: 80).isActive = true
-//        cell.widthAnchor.constraint(equalTo: tableView.widthAnchor, constant: -40).isActive = true
-        return cell
+        if let log = self.timesheetLogs.first {
+            let cell = TimesheetLogCell()
+            cell.hoursText = "\(log.wedC ?? 0)"
+            cell.titleText = "\(log.descriptionC ?? "")"
+            cell.subtext = "\(log.commentC ?? "")"
+            return cell
+        }
+        return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
 }

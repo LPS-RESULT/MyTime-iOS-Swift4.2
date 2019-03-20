@@ -28,6 +28,10 @@
 		EAAADBF122406D6200E5CA3A /* KFAddons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF022406D6100E5CA3A /* KFAddons.swift */; };
 		EAAADBF42240834400E5CA3A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF32240834400E5CA3A /* DayView.swift */; };
 		EAAADBF62240942F00E5CA3A /* TimesheetLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */; };
+		EAAADC0D22418F1500E5CA3A /* TimesheetLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAADC0C22418F1400E5CA3A /* TimesheetLogCell.swift */; };
+		EAC4B26A2241BDBF0039555F /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC4B2692241BDBF0039555F /* DateHelper.swift */; };
+		EAF14DD22241DD4400F97F23 /* PlacementCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF14DD12241DD4400F97F23 /* PlacementCode.swift */; };
+		EAF14DD42241DE7000F97F23 /* Placement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF14DD32241DE7000F97F23 /* Placement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		EAAADBF022406D6100E5CA3A /* KFAddons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFAddons.swift; sourceTree = "<group>"; };
 		EAAADBF32240834400E5CA3A /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetLog.swift; sourceTree = "<group>"; };
+		EAAADC0C22418F1400E5CA3A /* TimesheetLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetLogCell.swift; sourceTree = "<group>"; };
+		EAC4B2692241BDBF0039555F /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		EAF14DD12241DD4400F97F23 /* PlacementCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacementCode.swift; sourceTree = "<group>"; };
+		EAF14DD32241DE7000F97F23 /* Placement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placement.swift; sourceTree = "<group>"; };
 		FF2468F31379D78AEBA2DFD4 /* Pods-MyTimeSW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTimeSW.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyTimeSW/Pods-MyTimeSW.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,6 +171,7 @@
 				EA0F403A223F1E680095F368 /* MTDefaults.swift */,
 				EA0F403E223F2D200095F368 /* MTApi.swift */,
 				EAAADBF022406D6100E5CA3A /* KFAddons.swift */,
+				EAC4B2692241BDBF0039555F /* DateHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -199,6 +208,8 @@
 			children = (
 				EAAADBEE223F9AAC00E5CA3A /* UserProfile.swift */,
 				EAAADBF52240942F00E5CA3A /* TimesheetLog.swift */,
+				EAF14DD12241DD4400F97F23 /* PlacementCode.swift */,
+				EAF14DD32241DE7000F97F23 /* Placement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				EAAADBF32240834400E5CA3A /* DayView.swift */,
+				EAAADC0C22418F1400E5CA3A /* TimesheetLogCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -416,7 +428,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAC4B26A2241BDBF0039555F /* DateHelper.swift in Sources */,
 				EA0F402F223901D50095F368 /* HomeViewController.swift in Sources */,
+				EAF14DD22241DD4400F97F23 /* PlacementCode.swift in Sources */,
 				EAAADBF42240834400E5CA3A /* DayView.swift in Sources */,
 				EA0F403F223F2D200095F368 /* MTApi.swift in Sources */,
 				EAAADBEF223F9AAC00E5CA3A /* UserProfile.swift in Sources */,
@@ -424,7 +438,9 @@
 				EA0F403B223F1E680095F368 /* MTDefaults.swift in Sources */,
 				EA0F40092238F6D80095F368 /* MainNavigationViewController.swift in Sources */,
 				EA0F40312239F71B0095F368 /* LPSFonts.swift in Sources */,
+				EAF14DD42241DE7000F97F23 /* Placement.swift in Sources */,
 				EA0F402C223900130095F368 /* LPSColors.swift in Sources */,
+				EAAADC0D22418F1500E5CA3A /* TimesheetLogCell.swift in Sources */,
 				EAAADBF62240942F00E5CA3A /* TimesheetLog.swift in Sources */,
 				EA0F40072238F6D80095F368 /* AppDelegate.swift in Sources */,
 				EA0F403D223F20970095F368 /* ProcessSignInViewController.swift in Sources */,
