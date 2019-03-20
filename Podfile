@@ -13,6 +13,7 @@ target 'MyTimeSW' do
   pod 'UIFontComplete'
   pod 'SharkORM'
   pod 'Kingfisher', '~> 4.10.1'
+  pod 'GMStepper'
 
   target 'MyTimeSWTests' do
     inherit! :search_paths

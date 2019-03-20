@@ -99,7 +99,7 @@ class TimesheetLogCell: UITableViewCell {
         cellView.addSubview(titleLabel)
         titleLabel.topAnchor.constraint(equalTo: cellView.topAnchor, constant: 6).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: hourContainer.trailingAnchor, constant: 6).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6).isActive = true
         
         subtextLabel = UILabel()
         subtextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -109,6 +109,6 @@ class TimesheetLogCell: UITableViewCell {
         cellView.addSubview(subtextLabel)
         subtextLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
         subtextLabel.leadingAnchor.constraint(equalTo: hourContainer.trailingAnchor, constant: 6).isActive = true
-        subtextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor).isActive = true
+        subtextLabel.trailingAnchor.constraint(equalTo: cellView.trailingAnchor, constant: -6).isActive = true
     }
 }

@@ -84,8 +84,8 @@ class MTApi {
     static func getPlacementCodes(result: @escaping (Bool, [PlacementCode]?) -> Void) {
         guard let userDetails = MTDefaults.userDetails else { print("failed!"); return }
         let url = "\(userDetails.instanceUrl)/services/data/v44.0/query/?q=SELECT+CreatedById%2CCreatedDate%2CId%2CIsDeleted%2CLastModifiedById%2CLastModifiedDate%2CName%2CPlacement__c%2CSystemModstamp+FROM+Placement_Code__c"
-        let headers = ["Authorization": "Bearer \(userDetails.accessToken)"]
         print(url)
+        let headers = ["Authorization": "Bearer \(userDetails.accessToken)"]
         request(url, method: .get, headers: headers).responseJSON { (response) in
             print(response)
             guard let data = response.data else { return }
@@ -94,10 +94,36 @@ class MTApi {
                     let responseJson = try JSON(data: data)
                     var codes = [PlacementCode]()
                     responseJson["records"].array?.forEach({ (json) in
-                        let codes = PlacementCode().fromJSON(json: json)
-                        timesheets.append(timesheet)
+                        let code = PlacementCode().fromJSON(json: json)
+                        codes.append(code)
                     })
                     result(true, codes)
+                } else {
+                    result(false, nil)
+                }
+            } catch (_) {
+                result(false, nil)
+            }
+        }
+    }
+    
+    static func getPlacements(withContactId contactId: String, result: @escaping (Bool, [Placement]?) -> Void) {
+        guard let userDetails = MTDefaults.userDetails else { print("failed!"); return }
+        let url = "\(userDetails.instanceUrl)/services/data/v44.0/query/?q=SELECT+Active_Staff_Member__c%2CAffinity_Employee_Number__c%2CClient_Line_Manager__c%2CContact_ID__c%2CContract_Notice_Period_Offer__c%2CContract_Notice_Period_Unit_Offer__c%2CCreatedById%2CCreatedDate%2CEnd_Date_Offer__c%2CExpected_Logged_Hours__c%2CId%2CInternal_or_Non_Billable_Job__c%2CIsDeleted%2CLastActivityDate%2CLastModifiedById%2CLastModifiedDate%2CLastReferencedDate%2CLastViewedDate%2CLatest_Timesheet_Week_End_Date_Check__c%2CLatest_Timesheet_Week_End_Date__c%2CLocation_Offer__c%2CLPS_Executive_Owner__c%2CName%2CPay_Rate_Offer__c%2CPlacement_Name__c%2CPlacement_Total_Hours__c%2CPO_Number__c%2CProject_Name_Offer__c%2CRate_Type_Offer__c%2CRate_Type__c%2CRecordTypeId%2CRelated_Offer__c%2CSoW_Contract_End_Date_Offer__c%2CSoW_Contract_Start_Date_Offer__c%2CStaff_Type__c%2CStart_Date_Offer__c%2CSystemModstamp%2CTarget_Weekly_Work_Hours2__c%2CTimesheet_Approver_Offer__c%2CTimesheet_Approver__c%2CTotalWeeklyWorkhoursOver__c%2CTotalWeeklyWorkhoursUnder__c%2Cts2extams__Action_Buttons__c%2Cts2extams__Communication_Buttons__c%2Cts2extams__Control_Buttons__c%2Cts2extams__Substatus__c%2Cts2__Accounts_Payable__c%2Cts2__Client__c%2Cts2__Code__c%2Cts2__Contact_Email__c%2Cts2__Contact_Phone__c%2Cts2__Contact__c%2Cts2__Employee__c%2Cts2__End_Date__c%2Cts2__Hiring_Manager__c%2Cts2__Job__c%2Cts2__Location__c%2Cts2__Pay_Rate__c%2Cts2__Start_Date__c%2Cts2__Status__c%2Cts2__Third_Party__c%2CWorking_Days__c+FROM+ts2__Placement__c+WHERE+ts2__Employee__c+%3D+%27\(contactId)%27"
+        let headers = ["Authorization": "Bearer \(userDetails.accessToken)"]
+        print(url)
+        request(url, method: .get, headers: headers).responseJSON { (response) in
+            print(response)
+            guard let data = response.data else { return }
+            do {
+                if (response.response?.statusCode == 200) {
+                    let responseJson = try JSON(data: data)
+                    var placements = [Placement]()
+                    responseJson["records"].array?.forEach({ (json) in
+                        let placement = Placement().fromJSON(json: json)
+                        placements.append(placement)
+                    })
+                    result(true, placements)
                 } else {
                     result(false, nil)
                 }

@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
     private var dayGroup: [DayView]!
     private var projectTable: UITableView!
     
+    private var placements = [Placement]()
     private var timesheetLogs: [TimesheetLog] = [TimesheetLog]()
     private var currentWeekEnd: Date!
     
@@ -58,6 +59,35 @@ class HomeViewController: UIViewController {
                     self.profileImageView.kf.setImage(with: profileImageUrl)
                     self.nameLabel.text = "\(profile.firstName ?? "") \(profile.lastName ?? "")"
                 }
+                self.getPlacementData()
+            }
+        }
+    }
+    
+    func getPlacementData() {
+        UserProfile.query().limit(1).fetchAsync { (result) in
+            if let profile = result.firstObject as? UserProfile {
+                MTApi.getPlacements(withContactId: profile.contactIDC ?? "", result: { (success, placements) in
+                    MTApi.getPlacementCodes(result: { (success, codes) in
+                        placements?.forEach({ (placement) in
+                            placement.placementCodes = [PlacementCode]()
+                            codes?.forEach({ (code) in
+                                if placement.placementId == code.placementC {
+                                    placement.placementCodes?.append(code)
+                                }
+                            })
+                        })
+                        self.placements = placements ?? [Placement]()
+                        self.getTimesheet()
+                    })
+                })
+            }
+        }
+    }
+    
+    func getTimesheet() {
+        UserProfile.query().limit(1).fetchAsync { (result) in
+            if let profile = result.firstObject as? UserProfile {
                 MTApi.getTimesheet(forWeekEnd: self.currentWeekEnd, ownerId: profile.userId ?? "", result: { (success, timesheets) in
                     if let logs = timesheets {
                         self.timesheetLogs = logs
@@ -66,8 +96,17 @@ class HomeViewController: UIViewController {
                 })
             }
         }
-        
-        
+    }
+    
+    func getPlacementFor(log: TimesheetLog) -> Placement? {
+        var result: Placement?
+        self.placements.forEach { (placement) in
+            if (log.placementC == placement.placementId) {
+                result = placement
+                return
+            }
+        }
+        return result
     }
     
     @objc func dayChosen(sender: DayView) {
@@ -284,9 +323,14 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let log = self.timesheetLogs.first {
             let cell = TimesheetLogCell()
-            cell.hoursText = "\(log.wedC ?? 0)"
-            cell.titleText = "\(log.descriptionC ?? "")"
-            cell.subtext = "\(log.commentC ?? "")"
+            cell.hoursText = "\(log.thuC ?? 0)"
+            cell.titleText = "\(self.getPlacementFor(log: log)?.placementNameC ?? "--none--")"
+            cell.subtext = "\(log.clientCodeC ?? "--none--")\n\(log.descriptionC ?? "")"
+            if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == UIForceTouchCapability.available
+            {
+                registerForPreviewing(with: self, sourceView: cell)
+                
+            }
             return cell
         }
         return UITableViewCell()
@@ -295,5 +339,25 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+}
+
+extension HomeViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = self.projectTable.indexPathForRow(at: location) else { return nil }
+        guard  let cell = self.projectTable.cellForRow(at: indexPath) else { return nil }
+        let popVC = SignInViewController()
+        //Set your Peek height
+        popVC.preferredContentSize = CGSize(width: 0.0, height: 300)
+        previewingContext.sourceRect = cell.frame
+        return popVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
+    
+    
+    
     
 }

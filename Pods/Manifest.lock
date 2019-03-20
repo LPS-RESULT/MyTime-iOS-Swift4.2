@@ -8,6 +8,7 @@ PODS:
   - AppCenter/Core (1.13.1)
   - AppCenter/Crashes (1.13.1):
     - AppCenter/Core
+  - GMStepper (2.2)
   - Kingfisher (4.10.1)
   - MaterialDesignSymbol (2.3.0)
   - SharkORM (2.3.62)
@@ -17,6 +18,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
   - AppCenter
+  - GMStepper
   - Kingfisher (~> 4.10.1)
   - MaterialDesignSymbol
   - SharkORM
@@ -27,6 +29,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AppCenter
+    - GMStepper
     - Kingfisher
     - MaterialDesignSymbol
     - SharkORM
@@ -36,12 +39,13 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   AppCenter: c41422e3d69220d17a622e48edebb8c1e0d06ec9
+  GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MaterialDesignSymbol: 0997399dbeecd5721f917f959edf296d5343f4f4
   SharkORM: ff65244dfc2e1fa4613badad7c42f6febc1951cc
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
 
-PODFILE CHECKSUM: 86928e75cb2185bb8b2ff945adeb4509a33b9799
+PODFILE CHECKSUM: eb79b0ff228b9fae0ba9a718b03aab4976419597
 
 COCOAPODS: 1.5.3
