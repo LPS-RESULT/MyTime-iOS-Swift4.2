@@ -8,6 +8,7 @@ PODS:
   - AppCenter/Core (1.13.1)
   - AppCenter/Crashes (1.13.1):
     - AppCenter/Core
+  - GearRefreshControl (2.0.0)
   - GMStepper (2.2)
   - Kingfisher (4.10.1)
   - MaterialDesignSymbol (2.3.0)
@@ -18,6 +19,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
   - AppCenter
+  - GearRefreshControl (from `https://github.com/Marker-Digital/GearRefreshControl`)
   - GMStepper
   - Kingfisher (~> 4.10.1)
   - MaterialDesignSymbol
@@ -36,9 +38,19 @@ SPEC REPOS:
     - SwiftyJSON
     - UIFontComplete
 
+EXTERNAL SOURCES:
+  GearRefreshControl:
+    :git: https://github.com/Marker-Digital/GearRefreshControl
+
+CHECKOUT OPTIONS:
+  GearRefreshControl:
+    :commit: 835a3e16cd19bb58d18fe5526741348e35e0adbe
+    :git: https://github.com/Marker-Digital/GearRefreshControl
+
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   AppCenter: c41422e3d69220d17a622e48edebb8c1e0d06ec9
+  GearRefreshControl: 8b32a9aa0ba27450439f3c0984adbbbeb89fecf4
   GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MaterialDesignSymbol: 0997399dbeecd5721f917f959edf296d5343f4f4
@@ -46,6 +58,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
 
-PODFILE CHECKSUM: eb79b0ff228b9fae0ba9a718b03aab4976419597
+PODFILE CHECKSUM: 239364654b76be017fe97530baaf68efefe8b74d
 
 COCOAPODS: 1.5.3

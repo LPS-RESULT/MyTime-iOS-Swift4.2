@@ -10,6 +10,7 @@ import UIKit
 import SharkORM
 import Kingfisher
 import MaterialDesignSymbol
+import GearRefreshControl
 
 class HomeViewController: UIViewController {
     
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController {
     private var saturdayView: DayView!
     private var dayGroup: [DayView]!
     private var projectTable: UITableView!
+    private var projectTablePtr: GearRefreshControl!
     
     private var placements = [Placement]()
     private var timesheetLogs: [TimesheetLog] = [TimesheetLog]()
@@ -50,6 +52,7 @@ class HomeViewController: UIViewController {
         } else {
             self.present(SignInViewController(), animated: false, completion: nil)
         }
+        self.projectTablePtr.beginRefreshing()
     }
     
     func populateViews() {
@@ -67,7 +70,10 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func getPlacementData() {
+    @objc func getPlacementData() {
+        DispatchQueue.main.async {
+            self.projectTablePtr.beginRefreshing()
+        }
         UserProfile.query().limit(1).fetchAsync { (result) in
             if let profile = result.firstObject as? UserProfile {
                 MTApi.getPlacements(withContactId: profile.contactIDC ?? "", result: { (success, placements) in
@@ -94,6 +100,7 @@ class HomeViewController: UIViewController {
                 MTApi.getTimesheet(forWeekEnd: self.currentWeekEnd, ownerId: profile.userId ?? "", result: { (success, timesheets) in
                     if let logs = timesheets {
                         self.timesheetLogs = logs
+                        self.projectTablePtr.endRefreshing()
                         self.animatedTableReload()
                     }
                 })
@@ -115,7 +122,7 @@ class HomeViewController: UIViewController {
     func animatedTableReload() {
         UIView.transition(with: self.projectTable,
                           duration: 0.35,
-                          options: UIView.AnimationOptions.transitionFlipFromTop,
+                          options: UIView.AnimationOptions.transitionFlipFromBottom,
                           animations: { self.projectTable.reloadData() })
     }
     
@@ -311,12 +318,18 @@ class HomeViewController: UIViewController {
         
         dayGroup = [sundayView, mondayView, tuesdayView, wednesdayView, thursdayView, fridayView, saturdayView]
         
+        self.projectTablePtr = GearRefreshControl(frame: self.view.bounds)
+        projectTablePtr.translatesAutoresizingMaskIntoConstraints = false
+        projectTablePtr.addTarget(self, action: #selector(self.getPlacementData), for: .valueChanged)
+        projectTablePtr.tintColor = LPSColors.primary
+        
         projectTable = UITableView()
         projectTable.translatesAutoresizingMaskIntoConstraints = false
         projectTable.delegate = self
         projectTable.dataSource = self
         projectTable.backgroundColor = UIColor.clear
         projectTable.separatorColor = UIColor.clear
+        projectTable.refreshControl = self.projectTablePtr
         self.view.addSubview(projectTable)
         projectTable.topAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
         projectTable.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
@@ -326,7 +339,9 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.projectTablePtr.scrollViewDidScroll(scrollView)
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {

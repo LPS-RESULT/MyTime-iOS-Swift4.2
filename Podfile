@@ -14,6 +14,7 @@ target 'MyTimeSW' do
   pod 'SharkORM'
   pod 'Kingfisher', '~> 4.10.1'
   pod 'GMStepper'
+  pod 'GearRefreshControl', :git => 'https://github.com/Marker-Digital/GearRefreshControl'
 
   target 'MyTimeSWTests' do
     inherit! :search_paths
