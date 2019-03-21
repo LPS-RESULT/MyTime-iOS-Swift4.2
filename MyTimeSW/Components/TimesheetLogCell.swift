@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GMStepper
 
 class TimesheetLogCell: UITableViewCell {
     
@@ -16,6 +17,7 @@ class TimesheetLogCell: UITableViewCell {
             return self.hoursLabel.text ?? ""
         } set {
             self.hoursLabel.text = newValue
+            self.hourStepper.value = Double(newValue) ?? 0
         }
     }
     
@@ -35,6 +37,7 @@ class TimesheetLogCell: UITableViewCell {
         }
     }
     
+    public var hourStepper: GMStepper!
     public var hoursLabel: UILabel!
     public var titleLabel: UILabel!
     public var subtextLabel: UILabel!
@@ -81,7 +84,7 @@ class TimesheetLogCell: UITableViewCell {
         hourContainer.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
         hourContainer.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
         hourContainer.leadingAnchor.constraint(equalTo: cellView.leadingAnchor).isActive = true
-        hourContainer.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        hourContainer.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         hoursLabel = UILabel()
         hoursLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +94,24 @@ class TimesheetLogCell: UITableViewCell {
         hourContainer.addSubview(hoursLabel)
         hoursLabel.centerXAnchor.constraint(equalTo: hourContainer.centerXAnchor).isActive = true
         hoursLabel.centerYAnchor.constraint(equalTo: hourContainer.centerYAnchor).isActive = true
+        
+        hourStepper = GMStepper(frame: CGRect.zero)
+        hourStepper.translatesAutoresizingMaskIntoConstraints = false
+        hourStepper.layer.cornerRadius = 4
+        hourStepper.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        hourStepper.value = 6
+        hourStepper.stepValue = 0.5
+        hourStepper.minimumValue = 0
+        hourStepper.maximumValue = 24
+        hourStepper.buttonsBackgroundColor = LPSColors.primary
+        hourStepper.labelBackgroundColor = LPSColors.primary
+        hourStepper.leftButtonText = ""
+        hourStepper.rightButtonText = ""
+        cellView.addSubview(hourStepper)
+        hourStepper.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
+        hourStepper.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
+        hourStepper.leadingAnchor.constraint(equalTo: cellView.leadingAnchor).isActive = true
+        hourStepper.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
