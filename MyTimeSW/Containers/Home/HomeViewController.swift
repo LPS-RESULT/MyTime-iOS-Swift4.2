@@ -31,14 +31,17 @@ class HomeViewController: UIViewController {
     
     private var placements = [Placement]()
     private var timesheetLogs: [TimesheetLog] = [TimesheetLog]()
+    private var currentDayIndex: Int = 0
     private var currentWeekEnd: Date!
     
     override func viewDidLoad() {
         self.currentWeekEnd = Date().getWeekDates().thisWeek.last
+        self.currentDayIndex = Date().dayOfWeekIndex
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
+        self.dayChosen(sender: dayGroup?[currentDayIndex - 1] ?? DayView())
         if let details = MTDefaults.userDetails {
             userDetails = details
             // Set kingfisher image loading to always use the access token we got earlier as an auth header
@@ -91,7 +94,7 @@ class HomeViewController: UIViewController {
                 MTApi.getTimesheet(forWeekEnd: self.currentWeekEnd, ownerId: profile.userId ?? "", result: { (success, timesheets) in
                     if let logs = timesheets {
                         self.timesheetLogs = logs
-                        self.projectTable.reloadData()
+                        self.animatedTableReload()
                     }
                 })
             }
@@ -109,10 +112,21 @@ class HomeViewController: UIViewController {
         return result
     }
     
+    func animatedTableReload() {
+        UIView.transition(with: self.projectTable,
+                          duration: 0.35,
+                          options: UIView.AnimationOptions.transitionFlipFromTop,
+                          animations: { self.projectTable.reloadData() })
+    }
+    
     @objc func dayChosen(sender: DayView) {
+        var index = 0
         dayGroup.forEach { (dayView) in
             dayView.chosen = dayView == sender
+            self.currentDayIndex = dayView.chosen ? index + 1 : self.currentDayIndex
+            index += 1
         }
+        self.animatedTableReload()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -248,7 +262,7 @@ class HomeViewController: UIViewController {
         tuesdayView = DayView(withDayName: "TUE", dayNumber: "19")
         tuesdayView.translatesAutoresizingMaskIntoConstraints = false
         tuesdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
-        tuesdayView.chosen = true
+        tuesdayView.chosen = false
         calendarContainer.addSubview(tuesdayView)
         tuesdayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         tuesdayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
@@ -323,7 +337,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let log = self.timesheetLogs[indexPath.row]
         let cell = TimesheetLogCell()
-        cell.hoursText = "\(log.thuC ?? 0)"
+        cell.hoursText = "\(log.getHours(forDayIndex: self.currentDayIndex - 1))"
         cell.titleText = "\(self.getPlacementFor(log: log)?.placementNameC ?? "--none--")"
         cell.subtext = "\(log.clientCodeC ?? "--none--")\n\(log.descriptionC ?? "")"
         if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == UIForceTouchCapability.available

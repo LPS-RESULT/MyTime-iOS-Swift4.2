@@ -132,4 +132,9 @@ class TimesheetLog: SRKObject {
         self.x24HoursPassedC = json[CodingKeys.x24HoursPassedC.stringValue].boolValue
         return self
     }
+    
+    func getHours(forDayIndex index: Int) -> Int {
+        let days =  [sunC, monC, tueC, wedC, thuC, friC, satC]
+        return days[index] ?? 0
+    }
 }

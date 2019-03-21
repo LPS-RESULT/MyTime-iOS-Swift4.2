@@ -35,4 +35,8 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    var dayOfWeekIndex: Int {
+        return Calendar.current.component(.weekday, from: self)
+    }
 }
