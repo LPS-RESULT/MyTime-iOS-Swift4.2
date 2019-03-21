@@ -1,15 +1,15 @@
 PODS:
   - Alamofire (4.8.1)
-  - AppCenter (1.13.1):
-    - AppCenter/Analytics (= 1.13.1)
-    - AppCenter/Crashes (= 1.13.1)
-  - AppCenter/Analytics (1.13.1):
+  - AppCenter (1.14.0):
+    - AppCenter/Analytics (= 1.14.0)
+    - AppCenter/Crashes (= 1.14.0)
+  - AppCenter/Analytics (1.14.0):
     - AppCenter/Core
-  - AppCenter/Core (1.13.1)
-  - AppCenter/Crashes (1.13.1):
+  - AppCenter/Core (1.14.0)
+  - AppCenter/Crashes (1.14.0):
     - AppCenter/Core
   - GearRefreshControl (2.0.0)
-  - GMStepper (2.2)
+  - GMStepper (2.3)
   - Kingfisher (4.10.1)
   - MaterialDesignSymbol (2.3.0)
   - SharkORM (2.3.62)
@@ -20,7 +20,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.8.1)
   - AppCenter
   - GearRefreshControl (from `https://github.com/Marker-Digital/GearRefreshControl`)
-  - GMStepper
+  - GMStepper (from `https://github.com/santiagotimothy/GMStepper`)
   - Kingfisher (~> 4.10.1)
   - MaterialDesignSymbol
   - SharkORM
@@ -31,7 +31,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AppCenter
-    - GMStepper
     - Kingfisher
     - MaterialDesignSymbol
     - SharkORM
@@ -41,23 +40,28 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   GearRefreshControl:
     :git: https://github.com/Marker-Digital/GearRefreshControl
+  GMStepper:
+    :git: https://github.com/santiagotimothy/GMStepper
 
 CHECKOUT OPTIONS:
   GearRefreshControl:
     :commit: 835a3e16cd19bb58d18fe5526741348e35e0adbe
     :git: https://github.com/Marker-Digital/GearRefreshControl
+  GMStepper:
+    :commit: bfc6b026e08e826580e90a9a260c2f01497659a8
+    :git: https://github.com/santiagotimothy/GMStepper
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  AppCenter: c41422e3d69220d17a622e48edebb8c1e0d06ec9
+  AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   GearRefreshControl: 8b32a9aa0ba27450439f3c0984adbbbeb89fecf4
-  GMStepper: 89fb106944dfcc3aa3add7164e3ebd463ea2104b
+  GMStepper: 1b380700918fb20255b1e93f0f4df7eb2c508079
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MaterialDesignSymbol: 0997399dbeecd5721f917f959edf296d5343f4f4
   SharkORM: ff65244dfc2e1fa4613badad7c42f6febc1951cc
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   UIFontComplete: 5b0f59a83308816c610164b79a2540b3520f9b72
 
-PODFILE CHECKSUM: 239364654b76be017fe97530baaf68efefe8b74d
+PODFILE CHECKSUM: 4fa8c0b8ca7b552f4f95e194dede86b6ce1136cd
 
 COCOAPODS: 1.5.3

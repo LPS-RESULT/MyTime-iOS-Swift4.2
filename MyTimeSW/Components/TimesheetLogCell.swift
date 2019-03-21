@@ -84,7 +84,7 @@ class TimesheetLogCell: UITableViewCell {
         hourContainer.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
         hourContainer.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
         hourContainer.leadingAnchor.constraint(equalTo: cellView.leadingAnchor).isActive = true
-        hourContainer.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        hourContainer.widthAnchor.constraint(equalToConstant: 80).isActive = true
         
         hoursLabel = UILabel()
         hoursLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -107,11 +107,14 @@ class TimesheetLogCell: UITableViewCell {
         hourStepper.labelBackgroundColor = LPSColors.primary
         hourStepper.leftButtonText = ""
         hourStepper.rightButtonText = ""
+        hourStepper.hideButtons()
+        hourStepper.backgroundColor = LPSColors.white
+        hourStepper.clipsToBounds = false
         cellView.addSubview(hourStepper)
         hourStepper.topAnchor.constraint(equalTo: cellView.topAnchor).isActive = true
         hourStepper.bottomAnchor.constraint(equalTo: cellView.bottomAnchor).isActive = true
         hourStepper.leadingAnchor.constraint(equalTo: cellView.leadingAnchor).isActive = true
-        hourStepper.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        hourStepper.widthAnchor.constraint(equalToConstant: 80).isActive = true
         
         titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

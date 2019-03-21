@@ -280,6 +280,8 @@ import UIKit
             return 10 // 0.05 sec * 10 = 0.5 sec
         }
     }
+    
+    var buttonsHidden: Bool = false
 
     @objc required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -306,6 +308,13 @@ import UIKit
         NotificationCenter.default.addObserver(self, selector: #selector(GMStepper.reset), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
+    public func hideButtons() {
+        buttonsHidden = true
+        leftButton.isHidden = true
+        rightButton.isHidden = true
+        self.setNeedsLayout()
+    }
+    
     func setupNumberFormatter() {
         let decValue = Decimal(stepValue)
         let digits = decValue.significantFractionalDecimalDigits
@@ -316,10 +325,10 @@ import UIKit
 
     public override func layoutSubviews() {
         let buttonWidth = bounds.size.width * ((1 - labelWidthWeight) / 2)
-        let labelWidth = bounds.size.width * labelWidthWeight
+        let labelWidth = bounds.size.width * ( buttonsHidden ? 1 : labelWidthWeight )
 
         leftButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: bounds.size.height)
-        label.frame = CGRect(x: buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
+        label.frame = CGRect(x: buttonsHidden ? 0 : buttonWidth, y: 0, width: labelWidth, height: bounds.size.height)
         rightButton.frame = CGRect(x: labelWidth + buttonWidth, y: 0, width: buttonWidth, height: bounds.size.height)
 
         labelMaximumCenterX = label.center.x + labelSlideLength

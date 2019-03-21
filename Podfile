@@ -13,7 +13,7 @@ target 'MyTimeSW' do
   pod 'UIFontComplete'
   pod 'SharkORM'
   pod 'Kingfisher', '~> 4.10.1'
-  pod 'GMStepper'
+  pod 'GMStepper', :git => 'https://github.com/santiagotimothy/GMStepper'
   pod 'GearRefreshControl', :git => 'https://github.com/Marker-Digital/GearRefreshControl'
 
   target 'MyTimeSWTests' do
