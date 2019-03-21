@@ -94,6 +94,10 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func refreshCalendar() {
+        
+    }
+    
     func getTimesheet() {
         UserProfile.query().limit(1).fetchAsync { (result) in
             if let profile = result.firstObject as? UserProfile {
@@ -130,7 +134,7 @@ class HomeViewController: UIViewController {
         var index = 0
         dayGroup.forEach { (dayView) in
             dayView.chosen = dayView == sender
-            self.currentDayIndex = dayView.chosen ? index + 1 : self.currentDayIndex
+            self.currentDayIndex = dayView.chosen ? index : self.currentDayIndex
             index += 1
         }
         self.animatedTableReload()
@@ -246,16 +250,6 @@ class HomeViewController: UIViewController {
         calendarContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         calendarContainer.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
-        sundayView = DayView(withDayName: "SUN", dayNumber: "17")
-        sundayView.translatesAutoresizingMaskIntoConstraints = false
-        sundayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
-        sundayView.chosen = false
-        calendarContainer.addSubview(sundayView)
-        sundayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
-        sundayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
-        sundayView.leadingAnchor.constraint(equalTo: calendarContainer.leadingAnchor).isActive = true
-        sundayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
-        
         mondayView = DayView(withDayName: "MON", dayNumber: "18")
         mondayView.translatesAutoresizingMaskIntoConstraints = false
         mondayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
@@ -263,7 +257,7 @@ class HomeViewController: UIViewController {
         calendarContainer.addSubview(mondayView)
         mondayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
         mondayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
-        mondayView.leadingAnchor.constraint(equalTo: sundayView.trailingAnchor).isActive = true
+        mondayView.leadingAnchor.constraint(equalTo: calendarContainer.leadingAnchor).isActive = true
         mondayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
         tuesdayView = DayView(withDayName: "TUE", dayNumber: "19")
@@ -316,7 +310,17 @@ class HomeViewController: UIViewController {
         saturdayView.leadingAnchor.constraint(equalTo: fridayView.trailingAnchor).isActive = true
         saturdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        dayGroup = [sundayView, mondayView, tuesdayView, wednesdayView, thursdayView, fridayView, saturdayView]
+        sundayView = DayView(withDayName: "SUN", dayNumber: "24")
+        sundayView.translatesAutoresizingMaskIntoConstraints = false
+        sundayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
+        sundayView.chosen = false
+        calendarContainer.addSubview(sundayView)
+        sundayView.topAnchor.constraint(equalTo: calendarContainer.topAnchor).isActive = true
+        sundayView.bottomAnchor.constraint(equalTo: calendarContainer.bottomAnchor).isActive = true
+        sundayView.leadingAnchor.constraint(equalTo: saturdayView.trailingAnchor).isActive = true
+        sundayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
+        
+        dayGroup = [mondayView, tuesdayView, wednesdayView, thursdayView, fridayView, saturdayView, sundayView]
         
         self.projectTablePtr = GearRefreshControl(frame: self.view.bounds)
         projectTablePtr.translatesAutoresizingMaskIntoConstraints = false
@@ -352,7 +356,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let log = self.timesheetLogs[indexPath.row]
         let cell = TimesheetLogCell()
-        cell.hoursText = "\(log.getHours(forDayIndex: self.currentDayIndex - 1))"
+        cell.hoursText = "\(log.getHours(forDayIndex: self.currentDayIndex))"
         cell.titleText = "\(self.getPlacementFor(log: log)?.placementNameC ?? "--none--")"
         cell.subtext = "\(log.clientCodeC ?? "--none--")\n\(log.descriptionC ?? "")"
         if UIApplication.shared.keyWindow?.traitCollection.forceTouchCapability == UIForceTouchCapability.available
