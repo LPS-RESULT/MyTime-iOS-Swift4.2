@@ -37,8 +37,13 @@ class HomeViewController: UIViewController {
     private var currentWeekEnd: Date!
     
     override func viewDidLoad() {
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.currentWeekEnd = Date().getWeekDates().thisWeek.last
-        self.currentDayIndex = Date().dayOfWeekIndex
+        self.currentDayIndex = Date().dayOfWeekIndex > 0 ? Date().dayOfWeekIndex - 1 : 1
+        setupViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,18 +100,26 @@ class HomeViewController: UIViewController {
     }
     
     func refreshCalendar() {
-        
+        let cal = Calendar(identifier: .gregorian)
+        let reference = cal.date(byAdding: .day, value: -2, to: self.currentWeekEnd)!
+        monthButton.setTitle(reference.monthName.uppercased(), for: .normal)
+        for index in 0...self.dayGroup.count - 1 {
+            dayGroup[index].dayNumberText = "\(reference.getWeekDates().thisWeek[index].day)"
+        }
     }
     
     func getTimesheet() {
+        projectTable.refreshControl?.beginRefreshing()
+        projectTable.alpha = 0.25
         UserProfile.query().limit(1).fetchAsync { (result) in
             if let profile = result.firstObject as? UserProfile {
                 MTApi.getTimesheet(forWeekEnd: self.currentWeekEnd, ownerId: profile.userId ?? "", result: { (success, timesheets) in
                     if let logs = timesheets {
                         self.timesheetLogs = logs
-                        self.projectTablePtr.endRefreshing()
                         self.animatedTableReload()
                     }
+                    self.projectTable.alpha = 1
+                    self.projectTablePtr.endRefreshing()
                 })
             }
         }
@@ -140,8 +153,20 @@ class HomeViewController: UIViewController {
         self.animatedTableReload()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        setupViews()
+    @objc func showNextWeek() {
+        let cal = Calendar(identifier: .gregorian)
+        self.currentWeekEnd = cal.date(byAdding: .day, value: 7, to: self.currentWeekEnd)
+        dayChosen(sender: dayGroup[self.currentDayIndex])
+        refreshCalendar()
+        getTimesheet()
+    }
+    
+    @objc func showPreviousWeek() {
+        let cal = Calendar(identifier: .gregorian)
+        self.currentWeekEnd = cal.date(byAdding: .day, value: -7, to: self.currentWeekEnd)
+        dayChosen(sender: dayGroup[self.currentDayIndex])
+        refreshCalendar()
+        getTimesheet()
     }
     
     func setupViews() {
@@ -197,6 +222,7 @@ class HomeViewController: UIViewController {
         let leftIcon = MaterialDesignSymbol(text:MaterialDesignIcon.keyboardArrowLeft24px, size:20)
         leftIcon.addAttribute(attributeName: NSAttributedString.Key.foregroundColor, value: UIColor.white)
         let previousMonthButton = UIButton()
+        previousMonthButton.addTarget(self, action: #selector(self.showPreviousWeek), for: .touchUpInside);
         previousMonthButton.translatesAutoresizingMaskIntoConstraints = false
         previousMonthButton.setImage(leftIcon.image(size: CGSize(width: 20, height: 20)), for: .normal)
         topHeaderView.addSubview(previousMonthButton)
@@ -208,6 +234,7 @@ class HomeViewController: UIViewController {
         let rightIcon = MaterialDesignSymbol(text:MaterialDesignIcon.keyboardArrowRight24px, size:20)
         rightIcon.addAttribute(attributeName: NSAttributedString.Key.foregroundColor, value: UIColor.white)
         let nextMonthButton = UIButton()
+        nextMonthButton.addTarget(self, action: #selector(self.showNextWeek), for: .touchUpInside);
         nextMonthButton.translatesAutoresizingMaskIntoConstraints = false
         nextMonthButton.setImage(rightIcon.image(size: CGSize(width: 20, height: 20)), for: .normal)
         topHeaderView.addSubview(nextMonthButton)
@@ -250,7 +277,9 @@ class HomeViewController: UIViewController {
         calendarContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         calendarContainer.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
-        mondayView = DayView(withDayName: "MON", dayNumber: "18")
+        let date = Date().getWeekDates().thisWeek;
+        
+        mondayView = DayView(withDayName: "MON", dayNumber: "\(Date().getWeekDates().thisWeek[0].day)")
         mondayView.translatesAutoresizingMaskIntoConstraints = false
         mondayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         mondayView.chosen = false
@@ -260,7 +289,7 @@ class HomeViewController: UIViewController {
         mondayView.leadingAnchor.constraint(equalTo: calendarContainer.leadingAnchor).isActive = true
         mondayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        tuesdayView = DayView(withDayName: "TUE", dayNumber: "19")
+        tuesdayView = DayView(withDayName: "TUE", dayNumber: "\(Date().getWeekDates().thisWeek[1].day)")
         tuesdayView.translatesAutoresizingMaskIntoConstraints = false
         tuesdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         tuesdayView.chosen = false
@@ -270,7 +299,7 @@ class HomeViewController: UIViewController {
         tuesdayView.leadingAnchor.constraint(equalTo: mondayView.trailingAnchor).isActive = true
         tuesdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        wednesdayView = DayView(withDayName: "WED", dayNumber: "20")
+        wednesdayView = DayView(withDayName: "WED", dayNumber: "\(Date().getWeekDates().thisWeek[2].day)")
         wednesdayView.translatesAutoresizingMaskIntoConstraints = false
         wednesdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         wednesdayView.chosen = false
@@ -280,7 +309,7 @@ class HomeViewController: UIViewController {
         wednesdayView.leadingAnchor.constraint(equalTo: tuesdayView.trailingAnchor).isActive = true
         wednesdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        thursdayView = DayView(withDayName: "THU", dayNumber: "21")
+        thursdayView = DayView(withDayName: "THU", dayNumber: "\(Date().getWeekDates().thisWeek[3].day)")
         thursdayView.translatesAutoresizingMaskIntoConstraints = false
         thursdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         thursdayView.chosen = false
@@ -290,7 +319,7 @@ class HomeViewController: UIViewController {
         thursdayView.leadingAnchor.constraint(equalTo: wednesdayView.trailingAnchor).isActive = true
         thursdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        fridayView = DayView(withDayName: "FRI", dayNumber: "22")
+        fridayView = DayView(withDayName: "FRI", dayNumber: "\(Date().getWeekDates().thisWeek[4].day)")
         fridayView.translatesAutoresizingMaskIntoConstraints = false
         fridayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         fridayView.chosen = false
@@ -300,7 +329,7 @@ class HomeViewController: UIViewController {
         fridayView.leadingAnchor.constraint(equalTo: thursdayView.trailingAnchor).isActive = true
         fridayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        saturdayView = DayView(withDayName: "SAT", dayNumber: "23")
+        saturdayView = DayView(withDayName: "SAT", dayNumber: "\(Date().getWeekDates().thisWeek[5].day)")
         saturdayView.translatesAutoresizingMaskIntoConstraints = false
         saturdayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         saturdayView.chosen = false
@@ -310,7 +339,7 @@ class HomeViewController: UIViewController {
         saturdayView.leadingAnchor.constraint(equalTo: fridayView.trailingAnchor).isActive = true
         saturdayView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 7).isActive = true
         
-        sundayView = DayView(withDayName: "SUN", dayNumber: "24")
+        sundayView = DayView(withDayName: "SUN", dayNumber: "\(Date().getWeekDates().thisWeek[6].day)")
         sundayView.translatesAutoresizingMaskIntoConstraints = false
         sundayView.addTarget(self, action: #selector(self.dayChosen(sender:)), for: .touchUpInside)
         sundayView.chosen = false

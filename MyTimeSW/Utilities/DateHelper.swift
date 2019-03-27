@@ -39,4 +39,14 @@ extension Date {
     var dayOfWeekIndex: Int {
         return Calendar.current.component(.weekday, from: self)
     }
+    
+    var day: Int {
+        return Calendar(identifier: .gregorian).component(.day, from: self)
+    }
+    
+    var monthName: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: self)
+    }
 }
